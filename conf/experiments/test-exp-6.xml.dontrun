@@ -1,0 +1,22 @@
+<experiment>
+	<nodeProducer class="gr.upatras.gemu.node.producer.TestNodeProducer">
+		<departureSchema class="gr.upatras.gemu.node.departure.NeverDepartSchema"></departureSchema>
+		<linkProducer class="gr.upatras.gemu.node.link.producer.NormalLinkProducer">
+			<statsChars class="gr.upatras.gemu.util.StatisticalCharacteristics">
+				<attr name="bandwidthMean" value="1e3"></attr>
+				<attr name="bandwidthDeviation" value="1e3"></attr></statsChars></linkProducer>
+		<weightProducer class="gr.upatras.gemu.node.weight.producer.StaticWeightProducer">
+			<attr name="weight" value="1"></attr></weightProducer></nodeProducer>
+	<taskProducer class="gr.upatras.gemu.task.producer.PoissonTaskProducer">
+		<statChars class="gr.upatras.gemu.util.StatisticalCharacteristics">
+			<attr name="epochMean" value="0.1"></attr>
+			<attr name="initialWorkloadMean" value="15"></attr>
+			<attr name="desirableCompletionTimeMean" value="22"></attr>
+			<attr name="absolutCompletionTimeMean" value="22"></attr>
+			<attr name="inputDataMean" value="15"></attr>
+			<attr name="outputDataMean" value="1500"></attr></statChars></taskProducer>
+	<statsAggregator class="gr.upatras.gemu.stats.SimpleStatsAggregator">
+		<attr name="aggregationInterval" value="50"></attr></statsAggregator>
+	<scheduler class="gr.upatras.gemu.scheduler.SimpleFCFSqueueECTassignScheduler"></scheduler>
+	<attr name="finishTime" value="300"></attr>
+	<iterateOn name="λ" startValue="0.4" stopValue="0.405" step="0.01" xpathExpr="taskProducer/statChars/attr[@name='epochMean']/@value"></iterateOn></experiment>

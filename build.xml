@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<project name="gemu" default="compile" basedir=".">
+	
+	<property name="src.dir" value="${basedir}/src"/>
+	<property name="lib.dir" value="${basedir}/lib"/>
+	<property name="bin.dir" value="${basedir}/bin"/>
+	
+	<path id="run.classpath">
+		<fileset dir="${lib.dir}">
+			<include name="**/*.jar"/>
+		</fileset>
+		<pathelement location="${bin.dir}"/>
+	</path>
+	
+	<target name="clean" description="Delete derived class files">
+		<delete dir="${bin.dir}" quiet="true"/>
+	</target>
+
+	<target name="compile" description="Compile Gemu Grid simulator." >
+		<mkdir dir="${bin.dir}"/>
+		<javac destdir="${bin.dir}">
+			<src path="${src.dir}"/>
+			<classpath>
+				<fileset dir="${lib.dir}" includes="**/*.jar"/>
+			</classpath>
+		</javac>
+	</target>
+	
+	<target name="run-all" description="Run simulations and convert results to charts." depends="run,convert-results-to-charts"/>
+	
+	<target name="run" description="Run simulations and save results.">
+		<java classname="gr.upatras.gemu.experiment.ExperimentsRunner" fork="true" maxmemory="1024m">
+			<classpath refid="run.classpath"/>
+			<jvmarg value="-Dorg.apache.commons.logging.Log=org.apache.commons.logging.impl.Log4JLogger"/><!-- <== no need for commons-logging.properties-->
+			<!--jvmarg value="-Dlog4j.debug"/-->
+			<jvmarg value="-Dlog4j.configuration=file://${basedir}/conf/log4j.properties"/>
+			<!--jvmarg value="-Dcom.sun.management.jmxremote"/-->
+			<arg value="run"/>
+		</java>
+	</target>
+	
+	<target name="test1" description="Run test1.">
+		<java classname="gr.upatras.gemu.experiment.ExperimentsRunner" fork="true" maxmemory="512m">
+			<classpath refid="run.classpath"/>
+			<jvmarg value="-Dorg.apache.commons.logging.Log=org.apache.commons.logging.impl.Log4JLogger"/><!-- <== no need for commons-logging.properties-->
+			<!--jvmarg value="-Dlog4j.debug"/-->
+			<jvmarg value="-Dlog4j.configuration=file://${basedir}/conf/log4j.properties"/>
+			<arg value="test1"/>
+		</java>
+	</target>
+	
+	<target name="convert-results-to-charts" description="Convert results to charts.">
+		<java classname="gr.upatras.gemu.experiment.ExperimentsRunner" fork="true" maxmemory="1024m">
+			<classpath refid="run.classpath"/>
+			<jvmarg value="-Dorg.apache.commons.logging.Log=org.apache.commons.logging.impl.Log4JLogger"/><!-- <== no need for commons-logging.properties-->
+			<!--jvmarg value="-Dlog4j.debug"/-->
+			<jvmarg value="-Dlog4j.configuration=file://${basedir}/conf/log4j.properties"/>
+			<arg value="make-charts"/>
+		</java>
+	</target>
+	
+	<target name="combine-results-to-charts" depends="clean,compile" description="Combine results and make charts.">
+		<java classname="gr.upatras.gemu.experiment.ExperimentsRunner" fork="true" maxmemory="1024m">
+			<classpath refid="run.classpath"/>
+			<jvmarg value="-Dorg.apache.commons.logging.Log=org.apache.commons.logging.impl.Log4JLogger"/><!-- <== no need for commons-logging.properties-->
+			<!--jvmarg value="-Dlog4j.debug"/-->
+			<jvmarg value="-Dlog4j.configuration=file://${basedir}/conf/log4j.properties"/>
+			<arg value="combine-results"/>
+		</java>
+	</target>
+	
+	<target name="all" depends="compile,run-all"/>
+	
+	<target name="javadoc" description="Generate javadocs.">
+		<javadoc sourcepath="${src.dir}" destdir="docs/api" packagenames="gr.upatras.gemu.*"/>
+	</target>
+</project>

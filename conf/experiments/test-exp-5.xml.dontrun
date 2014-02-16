@@ -1,0 +1,14 @@
+<experiment>
+	<nodeProducer class="gr.upatras.gemu.node.producer.TestNodeProducer">
+		<departureSchema class="gr.upatras.gemu.node.departure.NeverDepartSchema"></departureSchema>
+		<linkProducer class="gr.upatras.gemu.node.link.producer.NormalLinkProducer">
+			<statsChars class="gr.upatras.gemu.util.StatisticalCharacteristics">
+				<attr name="bandwidthMean" value="1e3"></attr>
+				<attr name="bandwidthDeviation" value="1e3"></attr></statsChars></linkProducer>
+		<weightProducer class="gr.upatras.gemu.node.weight.producer.StaticWeightProducer">
+			<attr name="weight" value="1"></attr></weightProducer></nodeProducer>
+	<taskProducer class="gr.upatras.gemu.task.producer.TestTaskProducer"/>
+	<statsAggregator class="gr.upatras.gemu.stats.SimpleStatsAggregator">
+		<attr name="aggregationInterval" value="1e3"></attr></statsAggregator>
+	<scheduler class="gr.upatras.gemu.scheduler.SimpleFCFSqueueECTassignScheduler"></scheduler>
+	<attr name="finishTime" value="130"></attr></experiment>

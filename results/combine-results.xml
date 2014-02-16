@@ -1,0 +1,14 @@
+<combinations>
+	<!--combine-results chartfilename="combination-1">
+		<result-file filename="exp-01.0.nodeQoS-mean.res"></result-file>
+		<result-file filename="exp-01.0.nodeQoS-StandardDeviation.res"></result-file></combine-results-->
+	<combine-results chartfilename="team-rsBoundTeam.for.presentation">
+		<result-file filename="exp-05.0.finishedBeforeDeadlineRatio-UserCategory:1.0.res.dontconvert">
+			<value-to-use name="NODE_TEAM 1:80%,2:20%"></value-to-use></result-file>
+		<result-file filename="exp-08.0.finishedBeforeDeadlineRatio-UserCategory:1.0.res">
+			<value-to-use name="TEAM_RS_BOUND 1:80%,2:20%,s=10000.0"></value-to-use></result-file></combine-results>
+	<!--combine-results chartfilename="combination-3">
+		<result-file filename="exp-01.0.deviationFromDesirableTime.res"></result-file>
+		<result-file filename="exp-01.0.deviationFromDesirableTime-TaskCategory:1.0.res"></result-file>
+		<result-file filename="exp-01.0.deviationFromDesirableTime-TaskCategory:2.0.res"></result-file>
+		<result-file filename="exp-01.0.finishedBeforeDeadlineRatio-TaskCategory:1.0.res"></result-file></combine-results--></combinations>

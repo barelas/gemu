@@ -1,0 +1,33 @@
+<experiments>
+<experiment>
+	<nodeProducer class="gr.upatras.gemu.node.producer.SimpleNodeProducer">
+		<statChars class="gr.upatras.gemu.util.StatisticalCharacteristics">
+			<attr name="ccDeviation" value="1000"></attr>
+			<attr name="ccMean" value="10000"></attr>
+			<attr name="epochMean" value="10000"></attr>
+			<attr name="epochDeviation" value="100"></attr></statChars>
+		<departureSchema class="gr.upatras.gemu.node.departure.FixedDepartTimeSchema">
+			<attr name="countdown" value="1e4"></attr></departureSchema>
+		<linkProducer class="gr.upatras.gemu.node.producer.NormalLinkProducer">
+			<statsChars class="gr.upatras.gemu.util.StatisticalCharacteristics">
+				<attr name="bandwidthMean" value="1e3"></attr>
+				<attr name="bandwidthDeviation" value="1e3"></attr></statsChars></linkProducer></nodeProducer>
+	<taskProducer class="gr.upatras.gemu.task.producer.NormalTaskProducer">
+		<statChars class="gr.upatras.gemu.util.StatisticalCharacteristics">
+			<attr name="epochMean" value="1e2"></attr>
+			<attr name="epochDeviation" value="1e2"></attr>
+			<attr name="initialWorkloadMean" value="1e5"></attr>
+			<attr name="initialWorkloadDeviation" value="1e6"></attr>
+			<attr name="desirableCompletionTimeMean" value="2e2"></attr>
+			<attr name="desirableCompletionTimeDeviation" value="1e2"></attr>
+			<attr name="absolutCompletionTimeMean" value="2e2"></attr>
+			<attr name="absolutCompletionTimeDeviation" value="1e2"></attr>
+			<attr name="inputDataMean" value="1e5"></attr>
+			<attr name="inputDataDeviation" value="1e5"></attr>
+			<attr name="outputDataMean" value="1e5"></attr>
+			<attr name="outputDataDeviation" value="1e5"></attr></statChars></taskProducer>
+	<statsAggregator class="gr.upatras.gemu.stats.SimpleStatsAggregator">
+		<attr name="aggregationInterval" value="1e3"></attr></statsAggregator>
+	<scheduler class="gr.upatras.gemu.scheduler.SimpleFCFSqueueECTassignScheduler"></scheduler>
+	<attr name="finishTime" value="3e6"></attr></experiment>
+</experiments>

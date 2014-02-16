@@ -1,0 +1,111 @@
+<experiments>
+<experiment>
+	<nodeProducer class="gr.upatras.gemu.node.producer.StaticNodeProducer">
+		<departureSchema class="gr.upatras.gemu.node.departure.NeverDepartSchema"></departureSchema>
+		<linkProducer class="gr.upatras.gemu.node.link.producer.NormalLinkProducer">
+			<statsChars class="gr.upatras.gemu.util.StatisticalCharacteristics">
+				<attr name="bandwidthMean" value="100"></attr>
+				<attr name="bandwidthDeviation" value="0"></attr></statsChars></linkProducer>
+		<weightProducer class="gr.upatras.gemu.node.weight.producer.StaticWeightProducer">
+			<attr name="weight" value="1"></attr></weightProducer>
+		<cpuhungerProducer class="gr.upatras.gemu.node.cpuhunger.SimpleCpuhungerProducer">
+			<pososto class="gr.upatras.gemu.util.Pososto">
+				<attr name="pososto" value="2"></attr>
+				<attr name="value" value="8"></attr></pososto>
+			<pososto class="gr.upatras.gemu.util.Pososto">
+				<attr name="pososto" value="8"></attr>
+				<attr name="value" value="2"></attr></pososto></cpuhungerProducer>
+		<categoryProducer class="gr.upatras.gemu.util.category.SimpleCategoryProducer">
+			<pososto class="gr.upatras.gemu.util.Pososto">
+				<attr name="pososto" value="2"></attr>
+				<attr name="value" value="2"></attr></pososto>
+			<pososto class="gr.upatras.gemu.util.Pososto">
+				<attr name="pososto" value="8"></attr>
+				<attr name="value" value="1"></attr></pososto></categoryProducer>
+		<attr name="computationalCapacity" value="1000"></attr>
+		<attr name="numberOfInitialNodes" value="100"></attr></nodeProducer>
+	<taskProducer class="gr.upatras.gemu.task.producer.PoissonTaskProducer">
+		<statChars class="gr.upatras.gemu.util.StatisticalCharacteristics">
+			<attr name="epochMean" value="10"></attr>
+			<attr name="initialWorkloadMean" value="10000"></attr>
+			<attr name="initialWorkloadDeviation" value="0"></attr>
+			<attr name="desirableCompletionTimeMean" value="30"></attr>
+			<attr name="desirableCompletionTimeDeviation" value="0"></attr>
+			<attr name="absolutCompletionTimeMean" value="45"></attr>
+			<attr name="absolutCompletionTimeDeviation" value="0"></attr>
+			<attr name="inputDataMean" value="1000"></attr>
+			<attr name="inputDataDeviation" value="0"></attr>
+			<attr name="outputDataMean" value="1000"></attr>
+			<attr name="outputDataDeviation" value="0"></attr></statChars>
+		<categoryProducer class="gr.upatras.gemu.util.category.SimpleCategoryProducer">
+			<pososto class="gr.upatras.gemu.util.Pososto">
+				<attr name="pososto" value="2"></attr>
+				<attr name="value" value="2"></attr></pososto>
+			<pososto class="gr.upatras.gemu.util.Pososto">
+				<attr name="pososto" value="8"></attr>
+				<attr name="value" value="1"></attr></pososto></categoryProducer></taskProducer>
+	<statsAggregator class="gr.upatras.gemu.stats.NodeUsageStatsAggregator">
+		<attr name="aggregationInterval" value="5"></attr></statsAggregator>
+	
+	<statsAggregator class="gr.upatras.gemu.stats.FinishedBeforeDeadlineRatioStatsAggregator">
+		<attr name="aggregationInterval" value="5"></attr></statsAggregator>
+	<statsAggregator class="gr.upatras.gemu.stats.FinishedBeforeDeadlineRatioForSpecificTaskCategory">
+		<attr name="aggregationInterval" value="5"></attr>
+		<attr name="categoryToStat" value="1"></attr></statsAggregator>
+	<statsAggregator class="gr.upatras.gemu.stats.FinishedBeforeDeadlineRatioForSpecificTaskCategory">
+		<attr name="aggregationInterval" value="5"></attr>
+		<attr name="categoryToStat" value="2"></attr></statsAggregator>
+	
+	<statsAggregator class="gr.upatras.gemu.stats.DesirableTimeDeviationStatsAggregator">
+		<attr name="aggregationInterval" value="5"></attr></statsAggregator>
+	<statsAggregator class="gr.upatras.gemu.stats.DesirableTimeDeviationForSpecificTaskCategory">
+		<attr name="aggregationInterval" value="5"></attr>
+		<attr name="categoryToStat" value="1"></attr></statsAggregator>
+	<statsAggregator class="gr.upatras.gemu.stats.DesirableTimeDeviationForSpecificTaskCategory">
+		<attr name="aggregationInterval" value="5"></attr>
+		<attr name="categoryToStat" value="2"></attr></statsAggregator>
+	
+	<statsAggregator class="gr.upatras.gemu.stats.FinishedBeforeDeadlineRatioForSpecificTaskAndUserCategory">
+		<attr name="aggregationInterval" value="5"></attr>
+		<attr name="taskCategoryToStat" value="1"></attr>
+		<attr name="userCategoryToStat" value="1"></attr></statsAggregator>
+	<statsAggregator class="gr.upatras.gemu.stats.FinishedBeforeDeadlineRatioForSpecificTaskAndUserCategory">
+		<attr name="aggregationInterval" value="5"></attr>
+		<attr name="taskCategoryToStat" value="1"></attr>
+		<attr name="userCategoryToStat" value="2"></attr></statsAggregator>
+	<statsAggregator class="gr.upatras.gemu.stats.FinishedBeforeDeadlineRatioForSpecificTaskAndUserCategory">
+		<attr name="aggregationInterval" value="5"></attr>
+		<attr name="taskCategoryToStat" value="2"></attr>
+		<attr name="userCategoryToStat" value="1"></attr></statsAggregator>
+	<statsAggregator class="gr.upatras.gemu.stats.FinishedBeforeDeadlineRatioForSpecificTaskAndUserCategory">
+		<attr name="aggregationInterval" value="5"></attr>
+		<attr name="taskCategoryToStat" value="2"></attr>
+		<attr name="userCategoryToStat" value="2"></attr></statsAggregator>
+	
+	<statsAggregator class="gr.upatras.gemu.stats.UserQoSMeanStatsAggregator">
+		<attr name="aggregationInterval" value="5"></attr></statsAggregator>
+	<statsAggregator class="gr.upatras.gemu.stats.UserQoSStandardDeviationStatsAggregator">
+		<attr name="aggregationInterval" value="5"></attr></statsAggregator>
+	<statsAggregator class="gr.upatras.gemu.stats.UserTypeQoSMeanForSpecificUserCategory">
+		<attr name="aggregationInterval" value="5"></attr>
+		<attr name="userCategoryToStat" value="1"></attr></statsAggregator>
+	<statsAggregator class="gr.upatras.gemu.stats.UserTypeQoSStandardDeviationForSpecificUserCategory">
+		<attr name="aggregationInterval" value="5"></attr>
+		<attr name="userCategoryToStat" value="1"></attr></statsAggregator>
+	<statsAggregator class="gr.upatras.gemu.stats.UserTypeQoSMeanForSpecificUserCategory">
+		<attr name="aggregationInterval" value="5"></attr>
+		<attr name="userCategoryToStat" value="2"></attr></statsAggregator>
+	<statsAggregator class="gr.upatras.gemu.stats.UserTypeQoSStandardDeviationForSpecificUserCategory">
+		<attr name="aggregationInterval" value="5"></attr>
+		<attr name="userCategoryToStat" value="2"></attr></statsAggregator>
+	
+	<scheduler class="gr.upatras.gemu.scheduler.LinearlyBoundedPerNodeCalcingRScheduler">
+		<attr name="s" value="1e2"></attr></scheduler>
+	<scheduler class="gr.upatras.gemu.scheduler.LinearlyBoundedPerNodeCalcingRScheduler">
+		<attr name="s" value="1e3"></attr></scheduler>
+	<scheduler class="gr.upatras.gemu.scheduler.LinearlyBoundedPerNodeCalcingRScheduler">
+		<attr name="s" value="1e4"></attr></scheduler>
+	
+	<attr name="finishTime" value="1e4"></attr>
+	<iterateOn name="λ" startValue="1" stopValue="13.2" step="3" xpathExpr="taskProducer/statChars/attr[@name='epochMean']/@value"></iterateOn></experiment>
+	</experiments>

@@ -1,0 +1,21 @@
+<experiments>
+<experiment>
+	<nodeProducer class="gr.upatras.gemu.node.producer.StaticNodeProducer">
+		<departureSchema class="gr.upatras.gemu.node.departure.NeverDepartSchema"></departureSchema>
+		<linkProducer class="gr.upatras.gemu.node.producer.StaticLinkProducer">
+			<attr name="bandwidth" value="1000"></attr></linkProducer>
+		<attr name="computationalCapacity" value="1000"></attr>
+		<attr name="numberOfInitialNodes" value="1000"></attr></nodeProducer>
+	<taskProducer class="gr.upatras.gemu.task.producer.PoissonTaskProducer">
+		<statChars class="gr.upatras.gemu.util.StatisticalCharacteristics">
+			<attr name="epochMean" value="0.1"></attr>
+			<attr name="initialWorkloadMean" value="1e5"></attr>
+			<attr name="desirableCompletionTimeMean" value="2e2"></attr>
+			<attr name="absolutCompletionTimeMean" value="2e2"></attr>
+			<attr name="inputDataMean" value="1e5"></attr>
+			<attr name="outputDataMean" value="1e5"></attr></statChars></taskProducer>
+	<statsAggregator class="gr.upatras.gemu.stats.SimpleStatsAggregator">
+		<attr name="aggregationInterval" value="1e3"></attr></statsAggregator>
+	<scheduler class="gr.upatras.gemu.scheduler.SimpleFCFSqueueECTassignScheduler"></scheduler>
+	<attr name="finishTime" value="3e5"></attr></experiment>
+</experiments>
